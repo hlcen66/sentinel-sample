@@ -1,0 +1,56 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: sentinel-sample
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacosserver:8849
+        namespace: namespaceid
+        group: yourgroup
+    sentinel:
+      transport:
+        dashboard: sentinelid:port
+        port: 8719
+      datasource:
+        flow:
+          nacos:
+            server-addr: nacosserver:8849
+            namespace: namespaceid
+            dataId: ${spring.application.name}-flow-rules
+            groupId: yourgroup
+            data-type: json
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: nacosserver:8849
+            namespace: namespaceid
+            dataId: ${spring.application.name}-degrade-rules
+            groupId: yourgroup
+            data-type: json
+            rule-type: degrade
+        system:
+          nacos:
+            server-addr: nacosserver:8849
+            namespace: namespaceid
+            dataId: ${spring.application.name}-system-rules
+            groupId: yourgroup
+            data-type: json
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: nacosserver:8849
+            namespace: namespaceid
+            dataId: ${spring.application.name}-auth-rules
+            groupId: yourgroup
+            data-type: json
+            rule-type: authority
+        param-flow:
+          nacos:
+            server-addr: nacosserver:8849
+            namespace: namespaceid
+            dataId: ${spring.application.name}-param-rules
+            groupId: yourgroup
+            data-type: json
+            rule-type: param-flow
